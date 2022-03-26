@@ -114,7 +114,7 @@ class WebpackBuilder {
   }
   setTemplateInfo(filePath, params) {
     this._templateFilePath = filePath
-    this._templateParameters = params
+    this._templateParameters = params || {}
     return this
   }
 
