@@ -56,10 +56,21 @@
     "css-minimizer-webpack-plugin": "^3.3.1"
   },
   "devDependencies": {
+    "@fangcha/eslint": "^0.2.0",
     "typescript": "^3.8.3",
     "element-ui": "^2.15.6",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.2",
     "vue-property-decorator": "^8.4.0"
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "jsxBracketSameLine": false,
+    "jsxSingleQuote": true,
+    "printWidth": 120,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
   }
 }
