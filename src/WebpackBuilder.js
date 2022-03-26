@@ -103,14 +103,24 @@ class WebpackBuilder {
     this.entry = {
       app: './src/app',
     }
-    this.htmlPlugins = [
-      new HtmlWebpackPlugin({
-        template: './index.ejs',
-      }),
-    ]
     this.extras = {}
     this.antdCustomVarsFile = ''
     this.aliasMap = {}
+  }
+
+  _templateFilePath = `${__dirname}/index.ejs`
+  _templateParameters = {
+    htmlTitle: 'App',
+  }
+  setTemplateInfo(filePath, params) {
+    this._templateFilePath = filePath
+    this._templateParameters = params
+    return this
+  }
+
+  setHtmlTitle(title) {
+    this._templateParameters.htmlTitle = title
+    return this
   }
 
   setAntdCustomVarsFile(filePath) {
@@ -159,23 +169,37 @@ class WebpackBuilder {
     return this
   }
 
-  /**
-   * @param entry { object }
-   * @param multiPages
-   * @returns {WebpackBuilder}
-   */
-  setEntry(entry, multiPages = false) {
-    this.entry = entry
-    if (multiPages) {
-      this.htmlPlugins = Object.keys(entry).map((pageName) => {
+  _multiPages = false
+  useMultiPages() {
+    this._multiPages = true
+    return this
+  }
+
+  htmlPlugins() {
+    if (this._multiPages) {
+      return Object.keys(this.entry).map((pageName) => {
         return new HtmlWebpackPlugin({
-          template: './index.ejs',
+          template: this._templateFilePath,
+          templateParameters: this._templateParameters,
           filename: `${pageName}.html`,
           chunks: ['styles', 'vendors', pageName],
-          // version: shell.exec('git rev-parse --short HEAD').stdout.trim(),
         })
       })
     }
+    return [
+      new HtmlWebpackPlugin({
+        template: this._templateFilePath,
+        templateParameters: this._templateParameters,
+      }),
+    ]
+  }
+
+  /**
+   * @param entry { object }
+   * @returns {WebpackBuilder}
+   */
+  setEntry(entry) {
+    this.entry = entry
     return this
   }
 
@@ -257,7 +281,7 @@ class WebpackBuilder {
           },
         ],
       },
-      plugins: [new webpack.HotModuleReplacementPlugin(), ...this.htmlPlugins],
+      plugins: [new webpack.HotModuleReplacementPlugin(), ...this.htmlPlugins()],
     }
   }
 
@@ -380,7 +404,7 @@ class WebpackBuilder {
           experimentalUseImportModule: true,
           filename: 'static/css/[name].[contenthash].css',
         }),
-        ...this.htmlPlugins,
+        ...this.htmlPlugins(),
       ],
     }
   }
