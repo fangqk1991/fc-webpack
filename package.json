@@ -12,6 +12,8 @@
     "src/*"
   ],
   "scripts": {
+    "start": "webpack-dev-server --config webpack.dev.js",
+    "build": "rm -rf dist && webpack --config webpack.test.js",
     "test": "rm -rf dist && webpack --config webpack.test.js"
   },
   "dependencies": {
@@ -55,8 +57,9 @@
   },
   "devDependencies": {
     "typescript": "^3.8.3",
-    "element-ui": "^2.13.0",
+    "element-ui": "^2.15.6",
     "vue": "^2.6.11",
-    "vue-class-component": "^7.2.2"
+    "vue-class-component": "^7.2.2",
+    "vue-property-decorator": "^8.4.0"
   }
 }
