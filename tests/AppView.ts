@@ -1,4 +1,4 @@
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, ViewController } from '@fangcha/vue'
 
 @Component({
   template: `
@@ -10,4 +10,4 @@ import { Component, Vue } from 'vue-property-decorator'
     </div>
   `,
 })
-export class AppView extends Vue {}
+export class AppView extends ViewController {}
