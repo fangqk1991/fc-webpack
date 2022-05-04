@@ -71,19 +71,21 @@ const generateConfigBase = () => {
             appendTsSuffixTo: [/\.vue$/],
             getCustomTransformers: () => ({
               before: [
-                tsImportPluginFactory([
-                  {
-                    libraryName: 'antd',
-                    libraryDirectory: 'es',
-                    style: true,
-                  },
-                  {
-                    style: false,
-                    libraryName: 'lodash',
-                    libraryDirectory: null,
-                    camel2DashComponentName: false,
-                  },
-                ]),
+                tsImportPluginFactory([]),
+              ],
+            }),
+          },
+        },
+        {
+          test: /\.tsx?$/,
+          loader: 'ts-loader',
+          include: /node_modules\/@fangcha\/.*-frontend/,
+          options: {
+            happyPackMode: true,
+            appendTsSuffixTo: [/\.vue$/],
+            getCustomTransformers: () => ({
+              before: [
+                tsImportPluginFactory([]),
               ],
             }),
           },
