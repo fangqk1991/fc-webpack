@@ -73,6 +73,11 @@ const generateConfigBase = () => {
               before: [
                 tsImportPluginFactory([
                   {
+                    libraryName: 'antd',
+                    libraryDirectory: 'es',
+                    style: true,
+                  },
+                  {
                     style: false,
                     libraryName: 'lodash',
                     libraryDirectory: null,
@@ -91,7 +96,21 @@ const generateConfigBase = () => {
             happyPackMode: true,
             appendTsSuffixTo: [/\.vue$/],
             getCustomTransformers: () => ({
-              before: [tsImportPluginFactory([])],
+              before: [
+                tsImportPluginFactory([
+                  {
+                    libraryName: 'antd',
+                    libraryDirectory: 'es',
+                    style: true,
+                  },
+                  {
+                    style: false,
+                    libraryName: 'lodash',
+                    libraryDirectory: null,
+                    camel2DashComponentName: false,
+                  },
+                ]),
+              ],
             }),
           },
         },
