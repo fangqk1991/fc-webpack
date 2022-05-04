@@ -71,7 +71,14 @@ const generateConfigBase = () => {
             appendTsSuffixTo: [/\.vue$/],
             getCustomTransformers: () => ({
               before: [
-                tsImportPluginFactory([]),
+                tsImportPluginFactory([
+                  {
+                    style: false,
+                    libraryName: 'lodash',
+                    libraryDirectory: null,
+                    camel2DashComponentName: false,
+                  },
+                ]),
               ],
             }),
           },
@@ -84,9 +91,7 @@ const generateConfigBase = () => {
             happyPackMode: true,
             appendTsSuffixTo: [/\.vue$/],
             getCustomTransformers: () => ({
-              before: [
-                tsImportPluginFactory([]),
-              ],
+              before: [tsImportPluginFactory([])],
             }),
           },
         },
