@@ -1,6 +1,6 @@
 {
   "name": "@fangcha/webpack",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "main": "./src/index.js",
   "description": "Webpack configs",
   "repository": "https://github.com/fangqk1991/fc-webpack.git",
@@ -14,6 +14,7 @@
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js",
     "build": "rm -rf dist && webpack --config webpack.test.js",
+    "build-backend": "rm -rf dist && webpack --config backpack.config.js",
     "test": "rm -rf dist && webpack --config webpack.test.js"
   },
   "dependencies": {
@@ -42,7 +43,7 @@
     "style-loader": "^1.1.3",
     "terser-webpack-plugin": "^5.3.0",
     "ts-import-plugin": "^1.6.7",
-    "ts-loader": "^8.3.0",
+    "ts-loader": "^9.4.1",
     "unused-files-webpack-plugin": "^3.4.0",
     "url-loader": "^4.1.1",
     "vue-loader": "^15.9.8",
@@ -56,8 +57,10 @@
   },
   "devDependencies": {
     "@fangcha/eslint": "^0.2.0",
-    "@fangcha/vue": "^0.2.0",
-    "typescript": "^3.8.3"
+    "@fangcha/tools": "^1.22.0",
+    "@fangcha/vue": "^0.46.2",
+    "typescript": "^4.8.4",
+    "ts-node": "^10.9.1"
   },
   "prettier": {
     "arrowParens": "always",
