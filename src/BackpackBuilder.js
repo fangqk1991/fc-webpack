@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const nodeExternals = require('webpack-node-externals')
 
-const generateConfigBase = () => {
+const generateConfigBase = (nodeExternalsAllowList) => {
   return {
     mode: 'production',
 
@@ -53,11 +53,11 @@ const generateConfigBase = () => {
     externals: [
       nodeExternals({
         modulesDir: path.resolve(process.cwd(), '../../node_modules'),
-        allowlist: [/^@web/],
+        allowlist: nodeExternalsAllowList || [/^@web/],
       }),
       nodeExternals({
         modulesDir: path.resolve(process.cwd(), './node_modules'),
-        allowlist: [/^@web/],
+        allowlist: nodeExternalsAllowList || [/^@web/],
       }),
     ],
   }
@@ -66,6 +66,7 @@ const generateConfigBase = () => {
 class BackpackBuilder {
   constructor() {
     this.entry = undefined
+    this.nodeExternalsAllowList = [/^@web/]
   }
 
   build() {
