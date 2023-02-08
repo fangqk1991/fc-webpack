@@ -70,7 +70,7 @@ class BackpackBuilder {
   }
 
   build() {
-    const options = generateConfigBase()
+    const options = generateConfigBase(this.nodeExternalsAllowList)
     if (this.entry) {
       options.entry = this.entry
     }

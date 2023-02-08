@@ -1,6 +1,6 @@
 {
   "name": "@fangcha/webpack",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "main": "./src/index.js",
   "description": "Webpack configs",
   "repository": "https://github.com/fangqk1991/fc-webpack.git",
